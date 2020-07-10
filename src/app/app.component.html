@@ -1,0 +1,39 @@
+<section class=" d-flex justify-content-center container">
+    <div class=" py-2 modal-dialog-centered m-auto todo-wrapper">
+        <div class="p-4 form">
+            <h1 class="text-primary font-weight-bold">My Todos List</h1>
+            <div class="form-group">
+                <input 
+                required
+                class="form-control" 
+                placeholder="Enter todo name" 
+                [(ngModel)]="newTodo.title"
+                (keyup.enter)="input.value ? addTodo() : null "
+                #input
+                >
+            </div>
+            <div class="form-group">
+                <button 
+                (click)="addTodo()" 
+                [disabled]="input.value ? '' : 'disabled' "
+                class="px-3 btn btn-primary">Add todo</button>
+            </div>
+        </div>
+        <div class="todoLists">
+            <ul class="todos">
+                <li *ngFor="let todo of todoLists" 
+                class="mb-2 todo ">
+                    <input  
+                    type="checkbox" 
+                    (click)="markAsComplete(todo)" 
+                    [checked]="todo.complete">
+                    <div class="action">
+                        <h3 class="my-0" >{{todo.title}}</h3>
+                        <button 
+                          class=" btn btn-danger" 
+                          (click)="removeTodo(todo)">Delete</button>
+                    </div>
+              </ul>
+        </div>
+    </div>
+</section>
